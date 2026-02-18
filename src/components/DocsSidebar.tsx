@@ -16,7 +16,7 @@ const DOCS_SECTIONS = [
   { id: "examples", title: "Examples", content: "examples" },
 ];
 
-function CodeBlock({ code, language = "bash" }: { code: string; language?: string }) {
+function CodeBlock({ code, language: _language = "bash" }: { code: string; language?: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {

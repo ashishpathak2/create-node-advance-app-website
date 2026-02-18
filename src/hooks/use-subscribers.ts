@@ -1,29 +1,46 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api } from "@shared/routes";
-import { type InsertSubscriber } from "@shared/schema";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+type SubscriberCountResponse = {
+  count: number;
+};
+
+type InsertSubscriber = {
+  email: string;
+};
+
+type CreateSubscriberResponse = {
+  id: number;
+  email: string;
+  createdAt: string;
+};
+
+const subscribersApi = {
+  countPath: "/api/subscribers/count",
+  createPath: "/api/subscribers",
+} as const;
 
 export function useSubscribersCount() {
   return useQuery({
-    queryKey: [api.subscribers.count.path],
+    queryKey: [subscribersApi.countPath],
     queryFn: async () => {
-      const res = await fetch(api.subscribers.count.path);
+      const res = await fetch(subscribersApi.countPath);
       if (!res.ok) throw new Error("Failed to fetch count");
-      return api.subscribers.count.responses[200].parse(await res.json());
+      return (await res.json()) as SubscriberCountResponse;
     },
   });
 }
 
 export function useCreateSubscriber() {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: async (data: InsertSubscriber) => {
-      const validated = api.subscribers.create.input.parse(data);
-      const res = await fetch(api.subscribers.create.path, {
-        method: api.subscribers.create.method,
+      const res = await fetch(subscribersApi.createPath, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validated),
+        body: JSON.stringify(data),
       });
-      
+
       if (!res.ok) {
         if (res.status === 409) {
           throw new Error("Email already subscribed");
@@ -33,11 +50,11 @@ export function useCreateSubscriber() {
         }
         throw new Error("Failed to subscribe");
       }
-      
-      return api.subscribers.create.responses[201].parse(await res.json());
+
+      return (await res.json()) as CreateSubscriberResponse;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [api.subscribers.count.path] });
+      queryClient.invalidateQueries({ queryKey: [subscribersApi.countPath] });
     },
   });
 }

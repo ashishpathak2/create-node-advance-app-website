@@ -2,7 +2,7 @@ import { useState } from "react";
 import { 
   Database, Zap, Shield, Globe, 
   Cpu, Layers, GitBranch, ArrowRight,
-  Download, Star, Box, ChevronRight, BookOpen
+  Download, Star, Box, BookOpen
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { TerminalDemo, CopySnippet } from "@/components/TerminalDemo";
