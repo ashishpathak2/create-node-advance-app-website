@@ -106,7 +106,7 @@ function updateYear() {
   
   {/* Tech icon badges attached to the terminal panel */}
   {/* Top-right corner — Node.js */}
-  <div className=" -top-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#026e00] border-2 border-[#026e00]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="Node.js">
+  <div className="absolute -top-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#026e00] border-2 border-[#026e00]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="Node.js">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-8 h-8" />
   </div>
 
