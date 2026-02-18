@@ -8,22 +8,18 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { TerminalDemo, CopySnippet } from "@/components/TerminalDemo";
 import { FeatureCard } from "@/components/FeatureCard";
 import { DocsSidebar } from "@/components/DocsSidebar";
-import { TechStack } from "@/components/TechStack";
-import { useToast } from "@/hooks/use-toast";
 
 export default function Home() {
   const [docsOpen, setDocsOpen] = useState(false);
-  const { toast } = useToast();
 
   const handleDocsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setDocsOpen(true);
-    toast({
-      title: "📚 Documentation Opened",
-      description: "Browse through our comprehensive guides.",
-      duration: 2000,
-    });
   };
+
+function updateYear() {
+  return new Date().getFullYear();
+}
 
   return (
     <div className="min-h-screen bg-background font-mono selection:bg-primary selection:text-white">
@@ -37,14 +33,12 @@ export default function Home() {
         <nav className="hidden md:flex items-center gap-8 text-sm">
           <a href="#features" className="hover:text-primary transition-colors duration-300">FEATURES</a>
           <a href="#docs" onClick={handleDocsClick} className="hover:text-primary transition-colors duration-300 flex items-center gap-2">
-            <BookOpen className="w-4 h-4" />
             DOCS
           </a>
-          <a href="#pricing" className="hover:text-primary transition-colors duration-300">ENTERPRISE</a>
         </nav>
 
         <div className="flex items-center gap-4">
-          <a href="https://github.com" target="_blank" rel="noreferrer" className="hidden sm:flex items-center gap-2 text-sm hover:text-primary">
+          <a href="https://github.com/ashishpathak2/create-node-advance-app" target="_blank" rel="noreferrer" className="hidden sm:flex items-center gap-2 text-sm hover:text-primary">
             <GitBranch className="w-4 h-4" />
             <span className="hidden lg:inline">v2.1.0</span>
           </a>
@@ -62,7 +56,7 @@ export default function Home() {
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-secondary border border-border text-xs font-medium">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              SYSTEM ONLINE
+              PACKAGE ONLINE
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter leading-[0.9]">
@@ -98,10 +92,7 @@ export default function Home() {
                 <span>VIEW ON NPM</span>
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <Download className="w-4 h-4" />
-                <span>NPM PACKAGE</span>
-              </div>
+    
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Star className="w-4 h-4" />
                 <span>MIT LICENSE</span>
@@ -110,10 +101,42 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 blur-2xl opacity-50 -z-10 hidden lg:block"></div>
-            <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4 hidden lg:block"></div>
-            <TerminalDemo />
-          </div>
+  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 blur-2xl opacity-50 -z-10 hidden lg:block"></div>
+  <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4 hidden lg:block"></div>
+  
+  {/* Tech icon badges attached to the terminal panel */}
+  {/* Top-right corner — Node.js */}
+  <div className=" -top-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#026e00] border-2 border-[#026e00]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="Node.js">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-8 h-8" />
+  </div>
+
+  {/* Top-left corner — Express.js */}
+  <div className="absolute -top-4 -left-4 z-20 w-12 h-12 rounded-xl bg-neutral-800 border-2 border-neutral-600 shadow-lg flex items-center justify-center overflow-hidden" title="Express.js">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-8 h-8 invert" />
+  </div>
+
+  {/* Bottom-right corner — PostgreSQL */}
+  <div className="absolute -bottom-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#336791] border-2 border-[#336791]/50 shadow-lg shadow-blue-900/50 flex items-center justify-center overflow-hidden" title="PostgreSQL">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" className="w-8 h-8" />
+  </div>
+
+  {/* Bottom-left corner — MongoDB */}
+  <div className="absolute -bottom-4 -left-4 z-20 w-12 h-12 rounded-xl bg-[#13aa52] border-2 border-[#13aa52]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="MongoDB">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-8 h-8" />
+  </div>
+
+  {/* Mid-right — Docker */}
+  <div className="absolute top-1/2 -translate-y-1/2 -right-6 z-20 w-12 h-12 rounded-xl bg-[#0db7ed] border-2 border-[#0db7ed]/50 shadow-lg shadow-cyan-900/50 flex items-center justify-center overflow-hidden" title="Docker">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" className="w-8 h-8" />
+  </div>
+
+  {/* Mid-left — TypeScript */}
+  <div className="absolute top-1/2 -translate-y-1/2 -left-6 z-20 w-12 h-12 rounded-xl bg-[#3178c6] border-2 border-[#3178c6]/50 shadow-lg shadow-blue-900/50 flex items-center justify-center overflow-hidden" title="TypeScript">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" className="w-8 h-8" />
+  </div>
+
+  <TerminalDemo />
+</div>
         </div>
       </section>
 
@@ -160,8 +183,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Technology Stack */}
-      <TechStack />
 
       {/* Quick Start Flow */}
       <section className="py-24 px-6 lg:px-12 border-b border-border bg-secondary/30">
@@ -337,12 +358,12 @@ export default function Home() {
               <div className="w-3 h-3 bg-foreground" />
               CREATE-NODE-ADVANCE-APP
             </div>
-            <p className="text-muted-foreground">© 2024 Open Source. MIT License.</p>
+            <p className="text-muted-foreground">© {updateYear()} Open Source.</p>
           </div>
           
           <div className="flex gap-8 text-muted-foreground">
             <a href="https://www.npmjs.com/package/create-node-advance-app" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">NPM</a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GITHUB</a>
+            <a href="https://github.com/ashishpathak2/create-node-advance-app" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GITHUB</a>
             <a href="#" onClick={handleDocsClick} className="hover:text-primary transition-colors">DOCS</a>
           </div>
         </div>

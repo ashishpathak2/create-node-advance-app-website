@@ -12,7 +12,6 @@ const DOCS_SECTIONS = [
   { id: "quickstart", title: "Quick Start", content: "quickstart" },
   { id: "usage", title: "Usage", content: "usage" },
   { id: "configuration", title: "Configuration", content: "configuration" },
-  { id: "cli", title: "CLI Commands", content: "cli" },
   { id: "examples", title: "Examples", content: "examples" },
 ];
 
@@ -274,44 +273,7 @@ export const config = {
             </div>
           </div>
         );
-      case "cli":
-        return (
-          <div className="space-y-6">
-            <div>
-              <h2 className="text-2xl font-bold mb-4">CLI Commands</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Available commands for managing your project.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="p-4 border border-border rounded-xl">
-                <code className="text-primary font-bold">robot init</code>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Initialize a new project with interactive prompts
-                </p>
-              </div>
-              <div className="p-4 border border-border rounded-xl">
-                <code className="text-primary font-bold">robot generate</code>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Generate boilerplate code (models, routes, controllers)
-                </p>
-              </div>
-              <div className="p-4 border border-border rounded-xl">
-                <code className="text-primary font-bold">robot migrate</code>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Run database migrations
-                </p>
-              </div>
-              <div className="p-4 border border-border rounded-xl">
-                <code className="text-primary font-bold">robot deploy</code>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Deploy to production with optimized build
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      case "examples":
+        case "examples":
         return (
           <div className="space-y-6">
             <div>
