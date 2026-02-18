@@ -100,42 +100,65 @@ function updateYear() {
             </div>
           </div>
 
-          <div className="relative">
+         <div className="relative">
   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-purple-500/20 to-pink-500/20 blur-2xl opacity-50 -z-10 hidden lg:block"></div>
   <div className="absolute -inset-4 border border-primary/20 -z-10 translate-x-4 translate-y-4 hidden lg:block"></div>
-  
-  {/* Tech icon badges attached to the terminal panel */}
-  {/* Top-right corner — Node.js */}
-  <div className="absolute -top-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#026e00] border-2 border-[#026e00]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="Node.js">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-8 h-8" />
+
+  {/* Cycling logo strip above terminal */}
+  <div className="absolute py-1 -top-10 left-0 right-0 z-0 overflow-hidden h-10">
+    <div className="flex w-max gap-2 items-center animate-scroll hover:[animation-play-state:paused]">
+      {[
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", alt: "TypeScript", rotate: "-4deg", tint: "59,130,246" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", alt: "JavaScript", rotate: "4deg", tint: "234,179,8" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", alt: "Express.js", rotate: "-5deg", tint: "156,163,175", invert: true },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", alt: "MongoDB", rotate: "3deg", tint: "34,197,94" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", alt: "MySQL", rotate: "-6deg", tint: "14,165,233" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", alt: "PostgreSQL", rotate: "5deg", tint: "99,102,241" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", alt: "Docker", rotate: "-3deg", tint: "56,189,248" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg", alt: "Sequelize", rotate: "6deg", tint: "79,70,229" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongoose/mongoose-original.svg", alt: "Mongoose", rotate: "-5deg", tint: "239,68,68" },
+        { src: "https://zod.dev/logo.svg", alt: "Zod", rotate: "4deg", tint: "96,165,250" },
+        { src: "https://jwt.io/img/pic_logo.svg", alt: "JWT", rotate: "-4deg", tint: "168,85,247" },
+        // duplicate set for seamless loop
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", alt: "TypeScript", rotate: "3deg", tint: "59,130,246" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", alt: "JavaScript", rotate: "-5deg", tint: "234,179,8" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", alt: "Express.js", rotate: "6deg", tint: "156,163,175", invert: true },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", alt: "MongoDB", rotate: "-3deg", tint: "34,197,94" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg", alt: "MySQL", rotate: "5deg", tint: "14,165,233" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", alt: "PostgreSQL", rotate: "-6deg", tint: "99,102,241" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", alt: "Docker", rotate: "4deg", tint: "56,189,248" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg", alt: "Sequelize", rotate: "-7deg", tint: "79,70,229" },
+        { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongoose/mongoose-original.svg", alt: "Mongoose", rotate: "3deg", tint: "239,68,68" },
+        { src: "https://zod.dev/logo.svg", alt: "Zod", rotate: "-5deg", tint: "96,165,250" },
+        { src: "https://jwt.io/img/pic_logo.svg", alt: "JWT", rotate: "5deg", tint: "168,85,247" },
+      ].map((logo, i) => (
+        <div
+          key={i}
+          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{
+            transform: `rotate(${logo.rotate})`,
+            background: `linear-gradient(135deg, rgba(${logo.tint},0.18) 0%, rgba(255,255,255,0.05) 50%, rgba(${logo.tint},0.08) 100%)`,
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            boxShadow: `0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25), 0 0 0 1px rgba(${logo.tint},0.25)`,
+          }}
+          title={logo.alt}
+        >
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            className={`w-5 h-5 object-contain drop-shadow-sm ${logo.invert ? "invert opacity-80" : ""}`}
+            onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = "none"; }}
+          />
+        </div>
+      ))}
+    </div>
   </div>
 
-  {/* Top-left corner — Express.js */}
-  <div className="absolute -top-4 -left-4 z-20 w-12 h-12 rounded-xl bg-neutral-800 border-2 border-neutral-600 shadow-lg flex items-center justify-center overflow-hidden" title="Express.js">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express.js" className="w-8 h-8 invert" />
+  {/* Terminal on top */}
+  <div className="relative z-10">
+    <TerminalDemo />
   </div>
-
-  {/* Bottom-right corner — PostgreSQL */}
-  <div className="absolute -bottom-4 -right-4 z-20 w-12 h-12 rounded-xl bg-[#336791] border-2 border-[#336791]/50 shadow-lg shadow-blue-900/50 flex items-center justify-center overflow-hidden" title="PostgreSQL">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" className="w-8 h-8" />
-  </div>
-
-  {/* Bottom-left corner — MongoDB */}
-  <div className="absolute -bottom-4 -left-4 z-20 w-12 h-12 rounded-xl bg-[#13aa52] border-2 border-[#13aa52]/50 shadow-lg shadow-green-900/50 flex items-center justify-center overflow-hidden" title="MongoDB">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-8 h-8" />
-  </div>
-
-  {/* Mid-right — Docker */}
-  <div className="absolute top-1/2 -translate-y-1/2 -right-6 z-20 w-12 h-12 rounded-xl bg-[#0db7ed] border-2 border-[#0db7ed]/50 shadow-lg shadow-cyan-900/50 flex items-center justify-center overflow-hidden" title="Docker">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" className="w-8 h-8" />
-  </div>
-
-  {/* Mid-left — TypeScript */}
-  <div className="absolute top-1/2 -translate-y-1/2 -left-6 z-20 w-12 h-12 rounded-xl bg-[#3178c6] border-2 border-[#3178c6]/50 shadow-lg shadow-blue-900/50 flex items-center justify-center overflow-hidden" title="TypeScript">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" className="w-8 h-8" />
-  </div>
-
-  <TerminalDemo />
 </div>
         </div>
       </section>
